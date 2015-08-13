@@ -1,0 +1,7 @@
+# Check if system requirements were met to install StackStorm
+---
+- name: Check if there is enough memory
+  fail:
+    msg: "At least {{ st2_required_memory }}MB is required for st2 installation! Current: {{ ansible_memtotal_mb }}MB."
+  when: ansible_memtotal_mb < st2_required_memory|int
+  tags: [st2, requirements]
